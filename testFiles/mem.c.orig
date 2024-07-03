@@ -1,0 +1,20 @@
+1 #include <unistd.h>
+2 #include <stdio.h>
+3 #include <stdlib.h>
+4 #include "common.h"
+5
+6 int
+7 main(int argc, char *argv[])
+8 {
+9 int *p = malloc(sizeof(int)); // a1
+10 assert(p != NULL);
+11 printf("(%d) address pointed to by p: %p\n",
+12 getpid(), p); // a2
+13 *p = 0; // a3
+14 while (1) {
+15 Spin(1);
+16 *p = *p + 1;
+17 printf("(%d) p: %d\n", getpid(), *p); // a4
+18 }
+19 return 0;
+20 }
