@@ -23,7 +23,10 @@ switch (currentCmd){
         foreach (string line in allLines){
             charCount = line.IndexOf(' ');
             if (charCount >= 0){
-                allOutLines.Add(line.Substring(charCount));
+                var origLength = line.Length;
+                var tempLine = line.Substring(charCount);
+                tempLine.PadLeft(origLength,' ');
+                allOutLines.Add(tempLine);
             }
         }
         File.WriteAllLines(tempFile, allOutLines);
